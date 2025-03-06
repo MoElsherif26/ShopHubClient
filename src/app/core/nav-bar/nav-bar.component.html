@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a routerLink="/" class="navbar-brand">
+            <img src="favicon.ico" alt="" class="logo">
+            <i class="text-white">
+                ShopHub
+            </i>
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a routerLink="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a routerLink="/" class="nav-link">Shopping</a></li>
+                <li class="nav-item"><a routerLink="/" class="nav-link">About us</a></li>
+                <li class="nav-item"><a routerLink="/" class="nav-link">Best seller</a></li>
+            </ul>
+            <form class="form-inline mx-auto">
+                <div class="input-group">
+                    <input type="text" placeholder="search..." class="form-control" name="" id="">
+                    <div class="input-group-append">
+                        <button class="btn btn-light">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                    <a routerLink="/" class="nav-link">
+                        <i class="material-icons">shopping_cart</i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a (click)="toggleDropdown()" routerLink="/" class="nav-link dropdown-toggle">
+                        <i class="material-icons">account_circle</i>
+                        <!-- id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
+                    </a>
+                    <div [ngClass]="{'show': visible}" class="dropdown-menu dropdown-menu-end">
+                        <!-- aria-labelledby="navbarDropdown" -->
+                        <a class="dropdown-item">Register <i class="fa fa-user-plus"></i></a>
+                        <a class="dropdown-item">Login <i class="fa fa-sign-in"></i></a>
+                        <a class="dropdown-item">My Orders <i class="fa fa-list"></i></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

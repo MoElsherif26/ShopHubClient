@@ -1,0 +1,30 @@
+<div class="card h-100">
+    <img src="https://localhost:44343/{{product.photos[0].imageName}}" class="card-img-top" style="height: 300px; width: 100%;" alt="">
+    <div class="card-body">
+        <div class="thumbnails mb-3">
+            @for (photo of product.photos; track $index) {
+                <img src="https://localhost:44343/{{photo.imageName}}" class="thumbnail-img small-img" alt="">
+            }
+        </div>
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text" style="height: 50px; overflow: hidden;">{{product.description}}</p>
+        <p class="price">
+            <span class="old-price">{{product.oldPrice| currency:"EGP" }}</span>
+            {{product.newPrice| currency:"EGP" }}
+        </p>
+        <div class="rating mb-3">
+             
+        </div>
+        <button class="btn btn-outline-primary favorite-icon">
+            <i class="fa fa-bookmark"></i>
+        </button>
+        <div class="d-flex justify-content-between align-items-start">
+            <button class="btn btn-dark">
+                <i class="fa fa-shopping-cart"></i>Add To Cart
+            </button>
+            <button class="btn btn-success">
+                <i class="fa fa-info-circle"></i> Details
+            </button>
+        </div>  
+    </div>
+</div>
