@@ -4,6 +4,7 @@ import { IProduct } from '../shared/Models/Product';
 import { ShopService } from './shop.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductParam } from '../shared/Models/ProductParam';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-shop',
@@ -37,7 +38,7 @@ export class ShopComponent implements OnInit {
 
   totalCount!: number;
 
-  constructor(private shopService: ShopService) {}
+  constructor(private shopService: ShopService, private toast: ToastrService) {}
 
   ngOnInit(): void {
     this.productParam.sortSelected = this.SortingOption[0].value;
@@ -52,6 +53,7 @@ export class ShopComponent implements OnInit {
         this.totalCount = value.totalCount;
         this.productParam.pageNumber = value.pageNumber;
         this.productParam.pageSize = value.pageSize;
+        this.toast.success("Products loaded successfully", "SUCCESS");
       }
     });
   }

@@ -1,58 +1,60 @@
-<div class="container mt-5">
-    <div class="row">
-        <h1 class="main-title">Shopping</h1>
-        <section class="col-md-3">
-            <div class="sidebar">
-                <h4 class="section-title">Sorting</h4>
-                <div class="custom-select-wrapper mb-4">
-                    <select #sortSelected title="sortByPrice" name="" class="form-select" id="" (change)="sortingByPrice($event)">
-                        @for (option of SortingOption; track $index) {
-                            <option [value]="option.value">{{option.name}}</option>
-                        } 
-                    </select>
-                </div>
-                 <!-- Categories Section -->
-                <h4 class="section-title">Categories</h4>
-                <ul class="list-group custom-list-group">
-                    @for (category of categories; track $index) {
-                        <li [class.active]="category.id == productParam.CategoryId" (click)="selectedCategoryId(category.id)" class="list-group-item custom-list-item">
-                            {{category.name}} 
-                        </li>
-
-                    }
-                    
-                </ul>
-            </div>      
-        </section>
-        <section class="col-md-9">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div class="paging-container">
-                    <span class="text-dark">showing {{products.length}} of {{productParam.pageNumber*productParam.pageSize}}</span>
-                </div>
-                <div class="search-container">
-                    <div class="input-group search-bar">
-                        <input #search (keyup)="onSearch(search.value)" (keyup.enter)="onSearch(search.value)" type="text" class="form-control" placeholder="search...">
-                        <input (click)="onSearch(search.value)" type="button" class="btn btn-danger" value="Search">
-                        <input (click)="resetFilterationValues()" type="button" class="btn btn-dark" value="Reset">
+@if (products) {
+    <div class="container mt-5">
+        <div class="row">
+            <h1 class="main-title">Shopping</h1>
+            <section class="col-md-3">
+                <div class="sidebar">
+                    <h4 class="section-title">Sorting</h4>
+                    <div class="custom-select-wrapper mb-4">
+                        <select #sortSelected title="sortByPrice" name="" class="form-select" id="" (change)="sortingByPrice($event)">
+                            @for (option of SortingOption; track $index) {
+                                <option [value]="option.value">{{option.name}}</option>
+                            } 
+                        </select>
                     </div>
+                     <!-- Categories Section -->
+                    <h4 class="section-title">Categories</h4>
+                    <ul class="list-group custom-list-group">
+                        @for (category of categories; track $index) {
+                            <li [class.active]="category.id == productParam.CategoryId" (click)="selectedCategoryId(category.id)" class="list-group-item custom-list-item">
+                                {{category.name}} 
+                            </li>
+    
+                        }
+                        
+                    </ul>
+                </div>      
+            </section>
+            <section class="col-md-9">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="paging-container">
+                        <span class="text-dark">showing {{products.length}} of {{productParam.pageNumber*productParam.pageSize}}</span>
+                    </div>
+                    <div class="search-container">
+                        <div class="input-group search-bar">
+                            <input #search (keyup)="onSearch(search.value)" (keyup.enter)="onSearch(search.value)" type="text" class="form-control" placeholder="search...">
+                            <input (click)="onSearch(search.value)" type="button" class="btn btn-danger" value="Search">
+                            <input (click)="resetFilterationValues()" type="button" class="btn btn-dark" value="Reset">
+                        </div>
+                    </div>
+    
                 </div>
-
-            </div>
-            <div class="row g-4">
-                @for (product of products; track $index) {
-                    <ng-container>
-                        <app-shop-item class="product-item col-lg-4 col-md-6" [product]="product"></app-shop-item>
-                         
-                    </ng-container>
-                }
-            </div>
-            <div class="d-flex justify-content-center align-items-center mt-5">
-                <pagination 
-                [totalItems]="totalCount"
-                [itemsPerPage]="3"
-                (pageChanged)="onChangePage($event.page)"
-                [boundaryLinks]="true"></pagination>
-            </div>
-        </section>
+                <div class="row g-4">
+                    @for (product of products; track $index) {
+                        <ng-container>
+                            <app-shop-item class="product-item col-lg-4 col-md-6" [product]="product"></app-shop-item>
+                             
+                        </ng-container>
+                    }
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-5">
+                    <app-pagination 
+                        [totalCount]="totalCount"
+                        [pageSize]="productParam.pageSize"
+                        (pageChanged)="onChangePage($event)"
+                    ></app-pagination>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
+}

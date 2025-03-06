@@ -8,10 +8,10 @@
         </a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a routerLink="/" class="nav-link">Home</a></li>
-                <li class="nav-item"><a routerLink="/" class="nav-link">Shopping</a></li>
-                <li class="nav-item"><a routerLink="/" class="nav-link">About us</a></li>
-                <li class="nav-item"><a routerLink="/" class="nav-link">Best seller</a></li>
+                <li class="nav-item"><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a routerLink="/shop" routerLinkActive="active" class="nav-link">Shopping</a></li>
+                <li class="nav-item"><a class="nav-link">About us</a></li>
+                <li class="nav-item"><a class="nav-link">Best seller</a></li>
             </ul>
             <form class="form-inline mx-auto">
                 <div class="input-group">
@@ -25,12 +25,12 @@
             </form>
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
-                    <a routerLink="/" class="nav-link">
+                    <a class="nav-link">
                         <i class="material-icons">shopping_cart</i>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a (click)="toggleDropdown()" routerLink="/" class="nav-link dropdown-toggle">
+                    <a (click)="toggleDropdown()" class="nav-link dropdown-toggle">
                         <i class="material-icons">account_circle</i>
                         <!-- id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
