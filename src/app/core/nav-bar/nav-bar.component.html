@@ -25,8 +25,8 @@
             </form>
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link">
-                        <i class="material-icons">shopping_cart</i>
+                    <a class="nav-link" routerLink="/basket">
+                        <i matBadge="{{(count|async)?.basketItems?.length || 0}}" matBadgeColor="warn" class="material-icons">shopping_cart</i>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
