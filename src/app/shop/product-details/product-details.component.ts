@@ -1,7 +1,9 @@
+import { BasketService } from './../../basket/basket.service';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../../shared/Models/Product';
 import { ShopService } from './../shop.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +16,11 @@ export class ProductDetailsComponent implements OnInit {
   product!: IProduct;
   productMainImage!: string;
 
-  constructor(private shopService: ShopService, private route: ActivatedRoute) {}
+  quantity: number = 1;
+
+  constructor(private shopService: ShopService, private route: ActivatedRoute,
+    private toast: ToastrService, private basketService: BasketService
+  ) {}
 
   ngOnInit(): void {
     this.loadProduct();
@@ -33,5 +39,34 @@ export class ProductDetailsComponent implements OnInit {
   replaceImage(newImage: string) {
     this.productMainImage = newImage;
   }
-  
+
+  incrementBasket() {
+    if (this.quantity < 10){
+      this.quantity++;
+      this.toast.success("Item has been added to the basket");
+    } else {
+      this.toast.error("You can not add more than 10 items");
+
+    }
+  }
+  decrementBasket() {
+    if (this.quantity > 1){
+      this.quantity--;
+      this.toast.warning("Item has been decremented to the basket");
+    } else {
+      this.toast.error("You can not decrement more than 1 items");
+
+    }
+  }
+
+  addToBasket() {
+    this.basketService.addItemToBasket(this.product, this.quantity);
+  }
+
+  calculateDiscount(oldPrice: number, newPrice: number): number {
+    return parseFloat(
+      Math.round(((oldPrice - newPrice) / oldPrice) * 100).toFixed(1)
+    );
+  }
+
 }
